@@ -1,6 +1,18 @@
 use 'strict';
 
-// question 1
+// question 1:
+// Write a method isDual() to be used with all Array objects. An array is Said
+// to be dual if it has an even number of elements and each pair of consecutive
+// elements sum to the same value. Return 1 If the array Is dual, otherwise return O.
+
+// if the input array is
+// [1,2,3,0].isDual() => 1 (because 14+2 == 3+0 == 3)
+// [1, 2, 2, 1, 3, 0].isDual() => 1 (because 1+2 == 2+1 == 3+0 == 3)
+// [1,1,2,2].isDual() => 0 (because 1+1 == 2 != 2+2)
+// [1,2,3].isDual() => 0 (because array does not have an even number of elements)
+// [].isDual() => 1
+
+// solution:
 const allEquals = arr => {
   return arr.every(item => item === arr[0]);
 };

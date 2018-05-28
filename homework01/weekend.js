@@ -1,6 +1,9 @@
 use 'strict';
 
-// question 2
+// question 2:
+// Write isWeekend function that returns the string 'weekend' or 'weekday' without using if-statement.
+
+
 // solution 1:
 export function isWeekend1() {
   const todayDate = new Date();
