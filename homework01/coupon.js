@@ -1,4 +1,4 @@
-use 'strict';
+'use strict';
 
 // question 3:
 // We want to create a curryable function that takes as arguments (in this order):

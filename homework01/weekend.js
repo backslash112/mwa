@@ -1,4 +1,4 @@
-use 'strict';
+'use strict';
 
 // question 2:
 // Write isWeekend function that returns the string 'weekend' or 'weekday' without using if-statement.

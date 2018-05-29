@@ -1,4 +1,4 @@
-use 'strict';
+'use strict';
 
 // import {applyCoupon} from '../coupon';
 // import {isDual, allEquals } from '../dual-array';

@@ -1,4 +1,4 @@
-use 'strict';
+'use strict';
 
 // question 1:
 // Write a method isDual() to be used with all Array objects. An array is Said
