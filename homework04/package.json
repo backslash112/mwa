@@ -1,0 +1,15 @@
+{
+  "name": "homework04",
+  "version": "1.0.0",
+  "description": "",
+  "main": "check-system.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Cun Yang",
+  "license": "ISC",
+  "dependencies": {
+    "promise": "^8.0.1",
+    "rxjs": "^6.2.0"
+  }
+}
