@@ -52,7 +52,7 @@ const checkSystem2 = () => {
     }
   })
 }
-// checkSystem2();
+// checkSystem2().then(msg => console.log(msg)).catch(error => console.log(msg));
 
 
 // Solution 3:
