@@ -25,7 +25,7 @@ router.get('/', function (req, res, next) {
             });
     });
 
-    
+
     /*
     const fetchData = () => {
       return promise;
