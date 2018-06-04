@@ -45,6 +45,7 @@ router.get('/', function(req, res, next) {
   Rx.from(fetchDataPromise).subscribe(encrypted => {
     decrypt(encrypted).then(decrypted => {
       res.send(decrypted)
+      // Welcome to MongoDB Week :)
     });
   });
 });
