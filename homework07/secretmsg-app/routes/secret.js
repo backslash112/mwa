@@ -13,7 +13,7 @@ router.get('/', function(req, res, next) {
     MongoClient.connect('mongodb://127.0.0.1:27017/test', (err, client) => {
       if(err) throw err;
       const db = client.db('test');
-      db.collection('msgs').findOne({}, (err, doc) => {
+      db.collection('homework7').findOne({}, (err, doc) => {
         if(err) throw err;
         console.dir(doc);
         resolve(doc.message);
