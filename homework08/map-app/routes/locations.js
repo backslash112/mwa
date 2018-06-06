@@ -5,6 +5,7 @@ var router = express.Router();
 const Promise = require('promise');
 const Rx = require('rxjs');
 
+
 const buildConnectionPromise = new Promise((resolve, reject) => {
   console.log('buildConnectionPromise:');
   const MongoClient = require('mongodb').MongoClient;
@@ -14,6 +15,7 @@ const buildConnectionPromise = new Promise((resolve, reject) => {
     }
     console.log('resolve(client)');
     resolve(client);
+    //client.close();
   });
 });
 
@@ -25,7 +27,6 @@ const fetchAll = (client) => {
       if (err) {
         reject(err);
       }
-      console.log('resolve(doc)');
       resolve(doc);
       client.close();
     });
@@ -53,9 +54,24 @@ const createNewLocation = (client, location) => {
       if (err) {
         reject(err);
       }
-      resolve('success');
+      resolve('insert success');
       client.close();
     })
+  });
+};
+
+const updateLocation = (client, location_id, location) => {
+  return new Promise((resolve, reject) => {
+    const db = client.db('map');
+    const query = { location_id: location_id };
+    const values = { $set: location };
+    db.collection('locations').updateOne(query, values, (err, res) => {
+      if (err) {
+        reject(err);
+      }
+      resolve('update success');
+      client.close();
+    });
   });
 };
 
@@ -75,9 +91,14 @@ const deleteByLocationId = (client, locationId) => {
 const nearestLocations = (client) => {
   return new Promise((resolve, reject) => {
     const db = client.db('map');
-    db.collection('locations').find({}, (err, doc) => {
-
-    });
+    db.collection('locations').createIndex({ location: '2d' });
+    db.collection('locations').find({ location: { $near: [41.017654, -91.9665342] }}, (err, doc) => {
+     if (err) {
+       reject(err);
+     }
+     resolve(doc);
+     client.close();
+   }).limit(3);
   });
 };
 
@@ -86,11 +107,9 @@ router.get('/', function (req, res, next) {
   Rx.from(buildConnectionPromise).subscribe((client) => {
     fetchAll(client).then(doc => {
       console.log('got doc:' + doc);
-      // console.dir(doc);
       res.json(doc);
     });
   });
-
 });
 
 /* GET location by given name */
@@ -102,6 +121,17 @@ router.get('/:name', function (req, res, next) {
     fetchByLocationName(client, locationName).then(doc => {
       console.log('got doc:' + doc);
       // console.dir(doc);
+      res.json(doc);
+    }, err => {
+      console.log(err);
+    });
+  });
+});
+
+router.get('/:nearest', function (req, res, next) {
+  console.log('get nearest');
+  Rx.from(buildConnectionPromise).subscribe(client => {
+    nearestLocations(client).then(doc => {
       res.json(doc);
     }, err => {
       console.log(err);
@@ -132,32 +162,36 @@ router.post('/', [
       res.send(msg);
     }, err => {
       res.send(err);
-    })
+    });
   });
-
-  res.json(grades);
 });
 
-/* Update for given location_id */
+/* Update */
 router.put('/:location_id', function (req, res, next) {
-  const index = grades.findIndex(o => o.id == req.params.id);
-  grades[index].name = req.body.name;
-  grades[index].course = req.body.course;
-  grades[index].grade = req.body.grade;
-  res.json(grades[index]);
+  const location_id = req.params.location_id;
+  const location = {
+    name: req.body.name,
+    type: req.body.type,
+    location: req.body.location
+  };
+  Rx.from(buildConnectionPromise).subscribe((client) => {
+    updateLocation(client, location_id, location).then(msg => {
+      res.send(msg);
+    }, err => {
+      res.send(err);
+    });
+  });
 });
 
 /* DELETE location by given location_id */
 router.delete('/:location_id', function (req, res, next) {
-  // grades.splice(grades.findIndex(o => o.id == req.params.id), 1);
-  // res.json(grades);
   const locationId = req.params.location_id;
   Rx.from(buildConnectionPromise).subscribe((client) => {
     deleteByLocationId(client, location_id).then(msg => {
       res.send(msg);
     }, err => {
       rs.send(err);
-    })
+    });
   });
 });
 
