@@ -1,4 +1,6 @@
-### Using the Aggregation Framework:
+### Using the Aggregation Framework
+
+[zips.json](zips.json) content:
 ```
 { 
   "_id" : "01001", 
@@ -15,6 +17,8 @@
   "pop" : 36963, 
   "state" : "MA" 
 }
+
+...
 ```
 
 Import json to mongoDB:
