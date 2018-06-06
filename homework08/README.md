@@ -152,3 +152,81 @@ Write a MongoDB query to find the restaurant name, district, longitude and latit
 ```
 db.r.find( { name: /^Mad/}, { restaurant_id: 1, name: 1, district: 1, cuisine: 1, 'address.coord': 1 } ).pretty()
 ```
+
+
+### Exercise 2:
+
+Revisit Homework 07 and write down your suggestions to tune your Library application performance. (Indexes)
+Books have an ISBN number and are categorized by author and tagged by keywords to facilitate search
+Books can be borrowed by students, so the librarian will be able to check all borrowed books and their return date so he may contact students who are late returning their DOOKS.
+
+```
+{
+  _id: objectId(),
+  isbn: 0,
+  author: [
+    { author_id: 0, author_name: '' },
+    { author_id: 0, author_name: '' }],
+  keywords: ['keyword1', 'keyword2'],
+  borrowed_by: {student_id: 0, student_name: 'student1', email: 'student@mum.edu', borrow_date: Date, return_date: Date}
+
+}
+
+db.books.createIndex( { keywords: 1, isbn: 1 } );
+db.books.createIndex( { author: 1, isbn: 1 } );
+
+db.books.createIndex( { borrowed_by: 1 } );
+```
+
+### Exercise 3:
+Write a Rest Express API that uses MongoDB to
+Create/Read/Update/Delete location points. Location JSON object: { Name, category, location: [longitude, latitude |} Find some locations around MUM campus and use Postman to add them to your MongoDB collection. (Input and output must be tn JSON format).
+Ada the necessary indexes to search the geospacial locations.
+Write an API that will locate the nearest 3 points to your current location (lat: 41.017654, long: -91.9665342), your search criteria may include a mandatory category and an optional location name.
+Note that Googie Maps will give you coordination as |Lat, Long}. While MongoDB requires coordination to be saved as |Long, Lat}
+
+```
+{
+  "location_id": 1000,
+  "name": "Fairfield High School",
+  "type": "High School",
+  "location": [-91.9573982, 41.0083105]
+}
+
+{
+  "location_id": 1001,
+  "name": "Library of MUM",
+  "type": "University Library",
+  "location": [-91.9709945, 41.0180544]
+}
+
+{
+  "location_id": 1002,
+  "name": "Everybody's Whole Foods",
+  "type": "Natural Foods Store",
+  "location": [-91.9668768, 41.0122531]
+}
+
+{
+  "location_id": 1003,
+  "name": "Fairfield Post Office",
+  "type": "Post Office",
+  "location": [-91.9775606, 41.018106]
+}
+
+{
+  "location_id": 1004,
+  "name": "McDonald's",
+  "type": "Fast Food Restaurant",
+  "location": [-91.9775606, 41.018106]
+}
+
+{
+  "location_id": 1005,
+  "name": "Walmart Supercenter",
+  "type": "Department Store",
+  "location": [-91.9953418, 41.0076953]
+}
+```
+
+[map-app/routes/locations.js](map-app/routes/locations.js)
