@@ -80,7 +80,7 @@ Write a MongoDB query to find the restaurant Id, name, district and cuisine for 
 
 ```
 db.r.find( { name: /ces$/}, { restaurant_id: 1, name: 1, district: 1, cuisine: 1 } ).pretty()
-// another solution with $regex
+// same as:
 db.r.find( { name: { $regex: 'ces$' } } )
 ```
 
@@ -88,7 +88,7 @@ Write a MongoDB query to find the restaurant Id, name, district and cuisine for 
 
 ```
 db.r.find( { name: /Reg/}, { restaurant_id: 1, name: 1, district: 1, cuisine: 1 } ).pretty()
-// another solution with $regex
+// same as:
 db.r.find( { name: { $regex: 'Reg' } } )
 ```
 
@@ -160,7 +160,7 @@ Write a MongoDB query to find the restaurant name, district, longitude and latit
 
 ```
 db.r.find( { name: /^Mad/}, { restaurant_id: 1, name: 1, district: 1, cuisine: 1, 'address.coord': 1 } ).pretty()
-// another solution with $regex
+// same as:
 db.r.find( { name: { $regex: '^Mad' } } )
 ```
 
