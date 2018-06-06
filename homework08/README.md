@@ -64,7 +64,10 @@ db.r.find( { 'address.coord.0': { $lt: -95.754168 } } ).pretty()
 Write a MongoDB query to find the restaurants that does not prepare any cuisine of American and their grade score more than 70 and latitude less than -65.754168.
 
 ```
-db.r.find( { $and: [ { 'address.coord.0': { $lt: -65.754168 } } , { cuisine: { $ne: 'American' } }, { 'grades': { $elemMatch: { score: { $gt: 70 } } } } ] } ).pretty()
+db.r.find( { $and: [
+  { 'address.coord.0': { $lt: -65.754168 } } ,
+  { cuisine: { $ne: 'American' } },
+  { 'grades': { $elemMatch: { score: { $gt: 70 } } } } ] } ).pretty()
 ```
 
 Write a MongoDB query to find the restaurant Id, name, district and cuisine for those restaurants which contains Wil’ as first three letters for its name.
@@ -88,7 +91,9 @@ db.r.find( { name: /Reg/}, { restaurant_id: 1, name: 1, district: 1, cuisine: 1 
 Write a MongoDB query to find the restaurants which belongs to the district Bronx and prepared either American or Chinese dish.
 
 ```
-db.r.find( { $and: [ { 'district': 'Bronx' }, { cuisine: { $in: [ 'American', 'Chinese' ] } } ] } ).pretty()
+db.r.find( { $and: [
+  { 'district': 'Bronx' },
+  { cuisine: { $in: [ 'American', 'Chinese' ] } } ] } ).pretty()
 ```
 
 Write a MongoDB query to find the restaurant Id, name, district and cuisine for those restaurants which belongs to the district Staten isiand or Queens or Bronx or Brooklyn.
