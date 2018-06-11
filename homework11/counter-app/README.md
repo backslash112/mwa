@@ -28,8 +28,11 @@ docker run -it --rm -w /app -v $(pwd):/app alexsuch/angular-cli:6.0.3 ng new cou
 
 // run the project
 cd counter-app
+(npm insall)
 docker run -it --rm -w /app -v $(pwd):/app -p 4200:4200 alexsuch/angular-cli:6.0.3  ng serve --host 0.0.0.0
 
 // generate a new component named counter
 docker run -it --rm -w /app -v $(pwd):/app alexsuch/angular-cli:6.0.3 ng generate component counter
+
+visit: http://206.189.124.103:4200/
 ```
