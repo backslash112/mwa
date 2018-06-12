@@ -1,6 +1,6 @@
 
 <ul>
-  <li *ngFor="let item of items; let num = index">
+  <li *ngFor="let item of items; let num = index" appMyvisibility [visibility]='true'>
     {{ num+1}} - {{ item }}
   </li>
 </ul>
