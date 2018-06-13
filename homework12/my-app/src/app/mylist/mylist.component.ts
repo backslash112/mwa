@@ -8,12 +8,14 @@ import { Component, OnInit, Input } from '@angular/core';
 export class MylistComponent implements OnInit {
 
   @Input() items: string[];
-  constructor() {
-   
-   }
-
-
+  color: string;
+  constructor() { }
+  
   ngOnInit() {
   }
 
+  selectedColor(color) {
+    this.color = color;
+    console.log(color);
+  }
 }
