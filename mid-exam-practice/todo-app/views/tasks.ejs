@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+  </head>
+  <body>
+    <table>
+      <% for(var i=0; i < tasks.length; i++) { %>
+         <tr>
+           <td><%= tasks[i]._id %></td>
+           <td><%= tasks[i].task %></td>
+           <td><%= tasks[i].create_date %></td>
+           <td><%= tasks[i].update_date %></td>
+         </tr>
+      <% } %>
+    </table>
+</body>
+</html>

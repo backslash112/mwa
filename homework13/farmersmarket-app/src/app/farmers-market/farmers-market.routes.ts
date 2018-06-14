@@ -8,7 +8,9 @@ import { ErrorComponent } from "./error.component";
 const MY_ROUTES: Routes = [
     { path: 'farms', component: FarmsComponent },
     { path: 'farms/farm/:id', component: FarmDetailsComponent, canActivate: [ FarmersMarketGuard ]},
-    { path: 'error', component: ErrorComponent }
+    { path: 'error', component: ErrorComponent },
+    { path: '**', component: ErrorComponent }
+
 ]
 
 export const MyRoutes = RouterModule.forRoot(MY_ROUTES);
