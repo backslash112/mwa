@@ -8,15 +8,15 @@ import { DbService } from './db.service';
 })
 export class FarmersMarketGuard implements CanActivate {
   
-  constructor(private router: Router, private dbService: DbService,) {
+  constructor(private router: Router, private dbService: DbService) {
 
   }
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot,): Observable<boolean> | Promise<boolean> | boolean {
       console.log('check...')
-
-      if (state.url.split('/').length < 4 || this.dbService.getDataById(Number(state.url.split('/')[state.url.split('/').length-1])) == null) {
+      // state.url.split('/').length < 4 || 
+      if (this.dbService.getDataById(Number(state.url.split('/')[state.url.split('/').length-1])) == null) {
        console.log('error!')
        this.router.navigate(['/error']);
         return false;

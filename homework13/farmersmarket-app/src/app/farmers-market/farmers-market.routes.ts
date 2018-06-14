@@ -6,8 +6,8 @@ import { FarmersMarketGuard } from "./farmers-market.guard";
 import { ErrorComponent } from "./error.component";
 
 const MY_ROUTES: Routes = [
-    { path: 'farms', component: FarmsComponent },
-    { path: 'farms/farm/:id', component: FarmDetailsComponent, canActivate: [ FarmersMarketGuard ]},
+    { path: 'farm', component: FarmsComponent },
+    { path: 'farm/:id', component: FarmDetailsComponent, canActivate: [ FarmersMarketGuard ]},
     { path: 'error', component: ErrorComponent },
     { path: '**', component: ErrorComponent }
 

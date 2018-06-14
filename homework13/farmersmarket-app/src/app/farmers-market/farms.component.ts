@@ -9,7 +9,7 @@ import { DbService } from '../farmers-market/db.service';
   </p>
   <ul>
     <li *ngFor='let item of farms'>
-      <a [routerLink]="['farm', item._id]" [replaceUrl]='true'> {{ item.farm }} </a>
+      <a [routerLink]="[item._id]" [replaceUrl]='true'> {{ item.farm }} </a>
     </li>
   </ul>
 
