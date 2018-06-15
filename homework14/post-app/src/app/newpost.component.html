@@ -1,0 +1,28 @@
+<div class="container">
+    <form [formGroup]="myForm" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <input id="inputName" type="text" 
+                class="form-control" name="name" 
+                [formControl]="myForm.controls.name" 
+                [ngClass]="{'is-invalid': myForm.controls.name.invalid && myForm.controls.name.dirty}" 
+            required>
+            <div class="invalid-feedback" ng-show="{ myForm.controls.name.invalid && myForm.controls.name.dirty }">
+                Name is required!
+            </div>
+        </div>
+        <div class="form-group">
+            <input id="inputEmail" type="text" class="form-control" name="email" 
+            [ngClass]="{'is-invalid': myForm.controls.email.invalid && myForm.controls.email.dirty}" 
+            [formControl]="myForm.controls.email">
+            <div class="invalid-feedback" ng-show="{ myForm.controls.email.invalid && myForm.controls.email.dirty }">
+                Email is required!
+            </div>
+        </div>
+        <div class="form-group">
+            <input id="inputPost" type="text" class="form-control" name="post" 
+            [formControl]="myForm.controls.post">
+        </div>
+        <button type="submit" class="btn btn-primary myBtn" [disabled]="!myForm.valid">Submit</button>
+        <button type="button" class="btn btn-primary" (click)="onGetData()">Get Data</button>
+    </form>
+</div>
