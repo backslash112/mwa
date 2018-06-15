@@ -12,7 +12,7 @@ export class NewpostComponent implements OnInit {
     this.myForm = fb.group({
       name: new FormControl('', Validators.required),
       email: new FormControl('', Validators.required),
-      post: new FormControl('', Validators.minLength(10))
+      post: new FormControl('', [Validators.required, Validators.minLength(10)])
     });
   }
 
@@ -21,6 +21,7 @@ export class NewpostComponent implements OnInit {
 
   onSubmit(): void {
     console.log('onSubmit clicked!');
+    console.log(this.myForm.value);
   }
 
   onGetData(): void {

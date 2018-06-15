@@ -12,15 +12,20 @@
         </div>
         <div class="form-group">
             <input id="inputEmail" type="text" class="form-control" name="email" 
-            [ngClass]="{'is-invalid': myForm.controls.email.invalid && myForm.controls.email.dirty}" 
-            [formControl]="myForm.controls.email">
+                [ngClass]="{'is-invalid': myForm.controls.email.invalid && myForm.controls.email.dirty}"
+                ngModel email="true"
+                [formControl]="myForm.controls.email">
             <div class="invalid-feedback" ng-show="{ myForm.controls.email.invalid && myForm.controls.email.dirty }">
                 Email is required!
             </div>
         </div>
         <div class="form-group">
             <input id="inputPost" type="text" class="form-control" name="post" 
-            [formControl]="myForm.controls.post">
+                [formControl]="myForm.controls.post"
+                [ngClass]="{'is-invalid': myForm.controls.post.invalid && myForm.controls.post.dirty}" >
+            <div class="invalid-feedback" ng-show="{ myForm.controls.post.invalid && myForm.controls.post.dirty }">
+                Post content is required and min length is 10!
+            </div>
         </div>
         <button type="submit" class="btn btn-primary myBtn" [disabled]="!myForm.valid">Submit</button>
         <button type="button" class="btn btn-primary" (click)="onGetData()">Get Data</button>
