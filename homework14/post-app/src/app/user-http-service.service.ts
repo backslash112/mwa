@@ -13,20 +13,10 @@ export class UserHttpServiceService {
   constructor(public http: HttpClient) { }
 
   getData(): Observable<{ name: string, email: string, post: string }> {
-     http://jsonplaceholder.typicode.com/posts ?userld=1
+    const userObservable = this.http.get('https://jsonplaceholder.typicode.com/users/1');
+    const postObservable = this.http.get('https://jsonplaceholder.typicode.com/posts?userld=1');
 
-    const userObservable = this.http.get('http://jsonplaceholder.typicode.com/users/1');
-    const postObservable = this.http.get('http://jsonplaceholder.typicode.com/posts?userld=1');
-
-    
-    // return Observable.create((observer) => {
-    //   zip(userObservable, postObservable).subscribe(([user, post]) => {
-    //     observer
-    //   });
-    // })
-
-    return new Observable(observer => {
-      
+    return new Observable(observer => {      
       zip(userObservable, postObservable).subscribe(data => {
         console.log(data[0]);
         console.log(data[1]);
